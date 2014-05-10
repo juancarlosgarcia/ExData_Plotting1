@@ -23,8 +23,9 @@ plot(power_data$DateTime, power_data$Sub_metering_1, pch=NA
      ,xlab=""  
      ,ylab="Energy by sub metering"
      )
-lines(power_data$DateTime, power_data$Sub_metering_1, col='black')
-lines(power_data$DateTime, power_data$Sub_metering_2, col='red')
-lines(power_data$DateTime, power_data$Sub_metering_3, col='blue')
+colors = c("black","red","blue")
+sapply(1:3,function(x) lines(x=power_data$DateTime,y=power_data[,x+3], col=colors[x]))
+legend('topright', names(power_data[c(4:6)]),lty=c(1,1,1), col=colors)
+
 #Close the PNG device
 dev.off()
